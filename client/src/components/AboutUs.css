@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  background-image: url(white-easter-car-with-pink-egg-copy-space.jpg);
+  background-image: url('../public/white-easter-car-with-pink-egg-copy-space.jpg');
   background-size: cover;
   background-position: center;
 }
