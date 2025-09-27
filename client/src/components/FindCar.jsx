@@ -34,7 +34,7 @@ const FindCar = () => {
     e.preventDefault();
     if (!selectedCar) return alert('Please select a car!');
     try {
-      const res = await axios.post('http://localhost:5000/api/bookings', {
+      const res = await axios.post('https://gear-up-mern-backend.onrender.com/api/bookings', {
         ...formData,
         car: selectedCar,
       });
