@@ -17,7 +17,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://gear-up-mern-backend-05oe.onrender.com/api/feedback', formData);
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/feedback`, formData);
       alert('Feedback submitted successfully!');
       setFormData({ name: '', email: '', rating: '', message: '' });
     } catch (error) {

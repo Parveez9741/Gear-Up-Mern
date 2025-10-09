@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './FindCar.css';
 
-
 import frontLeft from '../assets/front-left-side-47.avif';
 import q3 from '../assets/q3-exterior-right-front-three-quarter-93480.avif';
 import swift from '../assets/swift-exterior-left-front-three-quarter-28.avif';
@@ -34,7 +33,7 @@ const FindCar = () => {
     e.preventDefault();
     if (!selectedCar) return alert('Please select a car!');
     try {
-      const res = await axios.post('https://gear-up-mern-backend-05oe.onrender.com/api/bookings', {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`, {
         ...formData,
         car: selectedCar,
       });
