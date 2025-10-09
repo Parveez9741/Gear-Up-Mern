@@ -4,42 +4,43 @@ const Booking = require('../models/Booking');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-
 router.post('/', async (req, res) => {
   try {
-    
-    const newBooking = new Booking(req.body);
+    const { car, name, email, phone, location, pickupDate, dropoffDate } = req.body;
+
+    if (!car || !name || !email || !phone || !location) {
+      return res.status(400).json({ error: 'All required fields must be filled' });
+    }
+
+    // Save booking first
+    const newBooking = new Booking({ car, name, email, phone, location, pickupDate, dropoffDate });
     await newBooking.save();
 
-  
+    // Respond immediately
+    res.status(201).json({ message: 'Booking successful! Confirmation email will be sent shortly.' });
+
+    // Send email asynchronously
     const transporter = nodemailer.createTransport({
-      service: 'gmail', 
+      service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,  
-        pass: process.env.EMAIL_PASS, 
-      },
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
     });
 
-  
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: req.body.email, 
+      to: email,
       subject: 'Booking Confirmation',
-      text: `Hi ${req.body.name}, 
-      
-Your booking for ${req.body.car} has been confirmed!
-Pickup: ${req.body.pickupDate}
-Drop-off: ${req.body.dropoffDate}
-
-Thank you for booking with us!`,
+      text: `Hi ${name},\n\nYour booking for ${car} has been confirmed!\nPickup: ${pickupDate || 'N/A'}\nDrop-off: ${dropoffDate || 'N/A'}\nLocation: ${location}\n\nThank you for booking with us!`
     };
 
-    
-    await transporter.sendMail(mailOptions);
+    transporter.sendMail(mailOptions)
+      .then(() => console.log(`Booking email sent to ${email}`))
+      .catch(err => console.error('Booking email failed:', err));
 
-    res.status(201).json({ message: 'Booking saved and email sent!' });
   } catch (error) {
-    console.error(error);
+    console.error('Booking route error:', error);
     res.status(500).json({ error: error.message });
   }
 });
