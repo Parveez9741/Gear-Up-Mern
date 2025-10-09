@@ -28,7 +28,7 @@ const AboutUs = () => {
       <footer>
         <p><strong>GearUp</strong> | Developed by Mohammed Parveez</p>
         <p>Email: <a href="mailto:mfarwiz1234@gmail.com">mfarwiz1234@gmail.com</a> | Phone: 9741387341</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/mohammed-parveez">Mohammed Parveez</a></p>
+        <p>LinkedIn: <a href="https://in.linkedin.com/in/mohammed-parveez-8b9b86253">Mohammed Parveez</a></p>
         <p>&copy; 2025 GearUp. All rights reserved.</p>
       </footer>
     </div>
