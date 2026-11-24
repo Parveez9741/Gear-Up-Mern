@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "GearUp Car Rentals",
+  "short_name": "GearUp",
+  "description": "Find your next drive with GearUp.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f7f7f4",
+  "theme_color": "#222421",
+  "icons": [
+    { "src": "/gearup-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
